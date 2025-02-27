@@ -1,6 +1,4 @@
-[![Version](https://img.shields.io/badge/version-v1.0.0-blue.svg)](https://github.com/huxiaoxu2019/hass-addon-frp-client/tree/v1.0.0)
-
-⚠️ **Note: This README corresponds to v1.0.0 and may not fully reflect the current state of the repository. Please change to the specific tag for the most accurate information.**
+[![Version](https://img.shields.io/badge/version-v1.2.0-blue.svg)](https://github.com/huxiaoxu2019/hass-addon-frp-client/tree/v1.2.0)
 
 # Hass Addon FRP Client
 Home Assistant Community Add-on: FRP Client
@@ -38,7 +36,28 @@ It's better to modify the `0.0.0.0/0` to your proxy server IP
 <img width="600"  src="https://github.com/huxiaoxu2019/hass-addon-frp-client/assets/5491423/47c4e863-1481-486a-9acb-41019c388fde">
 <br />
 
-_Notes for Chinese Users: If the above steps fail, please try again as GitHub resource access may be unstable. If the issue persists, you can check the specific logs for troubleshooting by using the command `ha su logs`._
+## Configuration Options
+
+### Basic Configuration
+- **serverAddr**: Your FRP server address (e.g., "example.com")
+- **serverPort**: Your FRP server port (default: 7000)
+- **authToken**: Authentication token for your FRP server
+- **customDomain**: Custom domain for accessing your Home Assistant (e.g., "ha.example.com")
+- **proxyName**: Name for your Home Assistant proxy (default: "homeassistant")
+
+### SSH Access Configuration
+- **sshProxyName**: Name for your SSH proxy (default: "ssh")
+- **sshDeviceName**: Device name for SSH access (e.g., "ssh-device")
+
+### HTTP Authentication
+- **httpUser**: Username for HTTP authentication
+- **httpPassword**: Password for HTTP authentication
+- **locationPath**: Path for accessing your Home Assistant (e.g., "/homeassistant")
+
+### Web Server Configuration (Optional)
+- **webServerPort**: Port for the FRP web server (default: 7500)
+- **webServerUser**: Username for the FRP web server (default: "admin")
+- **webServerPassword**: Password for the FRP web server
 
 ## Usage Tutorial
 <a href="https://www.youtube.com/watch?v=1UTcnqsiDg8">

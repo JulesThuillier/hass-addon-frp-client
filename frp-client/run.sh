@@ -12,12 +12,17 @@ bashio::log.info "Copying configuration."
 cp $DEFAULT_CONFIG_PATH $CONFIG_PATH
 sed -i "s/serverAddr = \"your_server_addr\"/serverAddr = \"$(bashio::config 'serverAddr')\"/" $CONFIG_PATH
 sed -i "s/serverPort = 7000/serverPort = $(bashio::config 'serverPort')/" $CONFIG_PATH
-sed -i "s/auth.token = \"123456789\"/auth.token = \"$(bashio::config 'authToken')\"/" $CONFIG_PATH
-sed -i "s/webServer.port = 7500/webServer.port = $(bashio::config 'webServerPort')/" $CONFIG_PATH
-sed -i "s/webServer.user = \"admin\"/webServer.user = \"$(bashio::config 'webServerUser')\"/" $CONFIG_PATH
-sed -i "s/webServer.password = \"123456789\"/webServer.password = \"$(bashio::config 'webServerPassword')\"/" $CONFIG_PATH
-sed -i "s/customDomains = \[\"your_domain\"\]/customDomains = [\"$(bashio::config 'customDomain')\"]/" $CONFIG_PATH
-sed -i "s/name = \"your_proxy_name\"/name = \"$(bashio::config 'proxyName')\"/" $CONFIG_PATH
+
+# SSH proxy configuration
+sed -i "s/name = \"your_ssh_proxy_name\"/name = \"$(bashio::config 'sshProxyName')\"/" $CONFIG_PATH
+sed -i "s/customDomains = \[\"ssh_device_name\"\]/customDomains = [\"$(bashio::config 'sshDeviceName')\"]/" $CONFIG_PATH
+
+# Home Assistant proxy configuration
+sed -i "s/name = \"your_home_assistant_proxy_name\"/name = \"$(bashio::config 'webProxyName')\"/" $CONFIG_PATH
+sed -i "s/customDomains = \[\"example.com\"\]/customDomains = [\"$(bashio::config 'customDomain')\"]/" $CONFIG_PATH
+sed -i "s|locations = \[\"/location\"\]|locations = [\"$(bashio::config 'locationPath')\"]|" $CONFIG_PATH
+sed -i "s/httpUser = \"http_user\"/httpUser = \"$(bashio::config 'httpUser')\"/" $CONFIG_PATH
+sed -i "s/httpPassword = \"http_password\"/httpPassword = \"$(bashio::config 'httpPassword')\"/" $CONFIG_PATH
 
 
 bashio::log.info "Starting frp client"
