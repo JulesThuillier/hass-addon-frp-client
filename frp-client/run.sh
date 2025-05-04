@@ -10,15 +10,34 @@ function stop_frpc() {
 
 bashio::log.info "Copying configuration."
 cp $DEFAULT_CONFIG_PATH $CONFIG_PATH
+
+# Debug: Log all configuration values
+bashio::log.info "Debug: Configuration values:"
+bashio::log.info "serverAddr: $(bashio::config 'serverAddr')"
+bashio::log.info "serverPort: $(bashio::config 'serverPort')"
+bashio::log.info "sshProxyName: $(bashio::config 'sshProxyName')"
+bashio::log.info "sshDeviceName: $(bashio::config 'sshDeviceName')"
+bashio::log.info "proxyName: $(bashio::config 'proxyName')"
+bashio::log.info "webProxyName: $(bashio::config 'webProxyName' 2>/dev/null || echo 'NOT FOUND')"
+bashio::log.info "customDomain: $(bashio::config 'customDomain')"
+bashio::log.info "locationPath: $(bashio::config 'locationPath')"
+bashio::log.info "httpUser: $(bashio::config 'httpUser')"
+bashio::log.info "httpPassword: $(bashio::config 'httpPassword')"
+
+# Server configuration
+bashio::log.info "Applying server configuration"
 sed -i "s/serverAddr = \"your_server_addr\"/serverAddr = \"$(bashio::config 'serverAddr')\"/" $CONFIG_PATH
 sed -i "s/serverPort = 7000/serverPort = $(bashio::config 'serverPort')/" $CONFIG_PATH
 
 # SSH proxy configuration
+bashio::log.info "Applying SSH proxy configuration"
 sed -i "s/name = \"your_ssh_proxy_name\"/name = \"$(bashio::config 'sshProxyName')\"/" $CONFIG_PATH
 sed -i "s/customDomains = \[\"ssh_device_name\"\]/customDomains = [\"$(bashio::config 'sshDeviceName')\"]/" $CONFIG_PATH
 
 # Home Assistant proxy configuration
-sed -i "s/name = \"your_home_assistant_proxy_name\"/name = \"$(bashio::config 'webProxyName')\"/" $CONFIG_PATH
+bashio::log.info "Applying Home Assistant proxy configuration"
+# Note: Using proxyName instead of webProxyName which doesn't exist in config.yaml
+sed -i "s/name = \"your_home_assistant_proxy_name\"/name = \"$(bashio::config 'proxyName')\"/" $CONFIG_PATH
 sed -i "s/customDomains = \[\"example.com\"\]/customDomains = [\"$(bashio::config 'customDomain')\"]/" $CONFIG_PATH
 sed -i "s|locations = \[\"/location\"\]|locations = [\"$(bashio::config 'locationPath')\"]|" $CONFIG_PATH
 sed -i "s/httpUser = \"http_user\"/httpUser = \"$(bashio::config 'httpUser')\"/" $CONFIG_PATH

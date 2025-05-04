@@ -11,7 +11,7 @@ webServer.password = "123456789"
 
 log.to = "./frps.log"
 # trace, debug, info, warn, error
-log.level = "info"
+log.level = "debug"
 log.maxDays = 3
 
 tls.force = false
