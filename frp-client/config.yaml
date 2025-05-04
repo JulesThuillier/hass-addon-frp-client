@@ -23,18 +23,12 @@ options:
   serverPort: 7000
   customDomain: "example.com"
   webProxyName: "homeassistant"
-  sshProxyName: "ssh"
-  sshDeviceName: "ssh-device"
   httpUser: "admin"
   httpPassword: "password"
-  locationPath: "/location"
 schema:
   serverAddr: str
   serverPort: int
   customDomain: str
   webProxyName: str
-  sshProxyName: str
-  sshDeviceName: str
   httpUser: str
   httpPassword: str
-  locationPath: str
