@@ -16,9 +16,13 @@ log.maxDays = 3
 
 tls.force = false
 
-# transport.tls.certFile = "./fullchain.pem"
-# transport.tls.keyFile = "./privkey.pem"
-# transport.tls.trustedCaFile = "./fullchain.pem"
+[[proxies]]
+name = "your_home_assistant_proxy_name"
+type = "http"
+localPort = 8123
+customDomains = ["example.com"]
+httpUser = "http_user" 
+httpPassword = "http_password"
 
 allowPorts = [
   { single = 8123 },
