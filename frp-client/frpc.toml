@@ -12,11 +12,10 @@ log.to = "/share/frpc.log"
 log.level = "info"
 log.maxDays = 3
 
-
 [[proxies]]
 name = "your_home_assistant_proxy_name"
 type = "http"
 localPort = 8123
-customDomains = ["test.remote.torrus.fr"]
+customDomains = ["example.com"]
 httpUser = "http_user" 
 httpPassword = "http_password"
