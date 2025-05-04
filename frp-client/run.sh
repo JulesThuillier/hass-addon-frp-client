@@ -47,8 +47,17 @@ bashio::log.info "Starting frp client"
 cat $CONFIG_PATH
 
 cd /usr/src
+
+# Ensure log directory exists and create empty log file if it doesn't exist
+bashio::log.info "Ensuring log file exists"
+mkdir -p /share
+touch /share/frpc.log
+bashio::log.info "Starting frpc client"
 ./frpc -c $CONFIG_PATH & WAIT_PIDS+=($!)
 
+# Give frpc a moment to initialize before tailing the log
+sleep 2
+bashio::log.info "Tailing log file"
 tail -f /share/frpc.log &
 
 trap "stop_frpc" SIGTERM SIGHUP
