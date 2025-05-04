@@ -17,8 +17,7 @@ bashio::log.info "serverAddr: $(bashio::config 'serverAddr')"
 bashio::log.info "serverPort: $(bashio::config 'serverPort')"
 bashio::log.info "sshProxyName: $(bashio::config 'sshProxyName')"
 bashio::log.info "sshDeviceName: $(bashio::config 'sshDeviceName')"
-bashio::log.info "proxyName: $(bashio::config 'proxyName')"
-bashio::log.info "webProxyName: $(bashio::config 'webProxyName' 2>/dev/null || echo 'NOT FOUND')"
+bashio::log.info "webProxyName: $(bashio::config 'webProxyName')"
 bashio::log.info "customDomain: $(bashio::config 'customDomain')"
 bashio::log.info "locationPath: $(bashio::config 'locationPath')"
 bashio::log.info "httpUser: $(bashio::config 'httpUser')"
@@ -36,8 +35,7 @@ sed -i "s/customDomains = \[\"ssh_device_name\"\]/customDomains = [\"$(bashio::c
 
 # Home Assistant proxy configuration
 bashio::log.info "Applying Home Assistant proxy configuration"
-# Note: Using proxyName instead of webProxyName which doesn't exist in config.yaml
-sed -i "s/name = \"your_home_assistant_proxy_name\"/name = \"$(bashio::config 'proxyName')\"/" $CONFIG_PATH
+sed -i "s/name = \"your_home_assistant_proxy_name\"/name = \"$(bashio::config 'webProxyName')\"/" $CONFIG_PATH
 sed -i "s/customDomains = \[\"example.com\"\]/customDomains = [\"$(bashio::config 'customDomain')\"]/" $CONFIG_PATH
 sed -i "s|locations = \[\"/location\"\]|locations = [\"$(bashio::config 'locationPath')\"]|" $CONFIG_PATH
 sed -i "s/httpUser = \"http_user\"/httpUser = \"$(bashio::config 'httpUser')\"/" $CONFIG_PATH
