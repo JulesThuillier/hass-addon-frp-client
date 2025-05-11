@@ -25,7 +25,7 @@ options:
   webProxyName: "homeassistant"
   httpUser: "admin"
   httpPassword: "password"
-  token: "authtoken"
+  authToken: "authtoken"
 schema:
   serverAddr: str
   serverPort: int
@@ -33,4 +33,4 @@ schema:
   webProxyName: str
   httpUser: str
   httpPassword: str
-  token: str
+  authToken: str
